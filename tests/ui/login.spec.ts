@@ -1,11 +1,18 @@
 import { test, expect } from '@playwright/test';
+import { SwaglabsLoginPage } from './pageobjects/swaglabs-login-page';
+import dotenv from 'dotenv';
 
-test('Log in to SauceDemo with Standard User', async ({ page }) => {
-  await page.goto('https://www.saucedemo.com/');
-  await page.locator('[data-test="username"]').click();
-  await page.locator('[data-test="username"]').fill('standard_user');
-  await page.locator('[data-test="password"]').click();
-  await page.locator('[data-test="password"]').fill('secret_sauce');
-  await page.locator('[data-test="login-button"]').click();
-  await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
-});
+dotenv.config();
+
+const standardUsername = process.env.STANDARD_USERNAME;
+const standardPassword = process.env.STANDARD_PASSWORD;
+
+test.describe("Log in to SauceLabs Demo", () => {
+
+    test('Log in to SauceDemo with Standard User Account', async ({ page }) => {
+        const swaglabsLoginPage = new SwaglabsLoginPage(page);
+        await swaglabsLoginPage.login(standardUsername, standardPassword);
+      });
+      
+})
+
