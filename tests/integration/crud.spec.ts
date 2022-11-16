@@ -4,16 +4,18 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const PETSTOREURL = `https://petstore.swagger.io/v2/pet`;
+const PETID = 942003;
+const PETNAME = `chookitya`;
 
 test('Should create a new pet.', async ({ request }) => {
     const newPet = await request.post(`${PETSTOREURL}/`, {
       data: {
-        "id": 942003,
+        "id": PETID,
         "category": {
           "id": 0,
           "name": "string"
         },
-        "name": "chookitya",
+        "name": PETNAME,
         "photoUrls": [
           "string"
         ],
@@ -33,10 +35,10 @@ test('Should create a new pet.', async ({ request }) => {
     expect(await pets.json()).toContainEqual(expect.objectContaining({
         "id": 942003,
         "category": {
-          "id": 0,
-          "name": "stringa"
+          "id": PETID,
+          "name": "string"
         },
-        "name": "chookity",
+        "name": PETNAME,
         "photoUrls": [
           "string"
         ],
