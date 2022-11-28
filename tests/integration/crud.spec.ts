@@ -92,7 +92,7 @@ test('Should create a new pet.', async ({ request }) => {
   });
 
   // DELETE
-  test('Should retrieve the updated pet name', async ({ request }) => {
+  test('Delete the freshly created pet name record', async ({ request }) => {
     const deletePet = await request.delete(`${PETSTOREURL}/${PETID}`);
     expect(deletePet.ok()).toBeTruthy();
     expect(await deletePet.json()).toContainEqual(expect.objectContaining({
